@@ -24,6 +24,7 @@ export const NoticiasProvider = ({children}) => {
             setLoading(true)
             const ApiKey = import.meta.env.VITE_API_KEY
             let config = {
+                withCredentials: false,
                 headers: {
                     authorization: `${ApiKey}`
                 }
@@ -43,6 +44,7 @@ export const NoticiasProvider = ({children}) => {
             setLoading(true)
             const ApiKey = import.meta.env.VITE_API_KEY
             let config = {
+                withCredentials: false,
                 headers: {
                     authorization: `${ApiKey}`
                 }
