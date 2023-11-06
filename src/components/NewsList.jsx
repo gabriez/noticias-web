@@ -2,7 +2,7 @@ import { Typography, Grid, Pagination, Stack, CircularProgress } from "@mui/mate
 import useNoticiasContext from "../context/NoticiasProvider"
 import New from "./New";
 const NewsList = () => {
-    const { news, totalPages, handlePages, loading } = useNoticiasContext();
+    const { news, totalPages, handlePages, loading, pages } = useNoticiasContext();
 
   return (
     <>
@@ -32,7 +32,7 @@ const NewsList = () => {
             alignItems={'center'}
             spacing={5}
         >
-            <Pagination count={totalPages} color="primary" onChange={handlePages}/>
+            <Pagination count={totalPages} color="primary" onChange={handlePages} page={pages}/>
         </Stack>
     </>
   )

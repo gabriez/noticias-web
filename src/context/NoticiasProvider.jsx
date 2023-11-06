@@ -66,7 +66,8 @@ export const NoticiasProvider = ({children}) => {
             news,
             totalPages,
             handlePages,
-            loading
+            loading,
+            pages
         }}>
             {children}
         </NoticiasContext.Provider>
