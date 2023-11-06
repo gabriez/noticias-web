@@ -25,17 +25,18 @@ export const NoticiasProvider = ({children}) => {
             const ApiKey = import.meta.env.VITE_API_KEY
             let config = {
                 headers: {
-                    authorization: `${ApiKey}`,
+                    "X-Api-Key": `${ApiKey}`,
                     "Access-Control-Allow-Origin": "*"
                     
                 }
             }            
             setPages(1);
             const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&category=${category}
-            `, config).then( response => response ).catch( err => console.error(err));
+            `, config).then( response => response ).catch( err => console.error(err)).finally(() => {
+                setLoading(false)
+            } );
             setTotalPages(Math.ceil((data.totalResults)/20));
             setNews(data.articles);
-            setLoading(false)
         }
         requestNews();
     }, [category])
@@ -47,13 +48,16 @@ export const NoticiasProvider = ({children}) => {
             let config = {
                 withCredentials: false,
                 headers: {
-                    authorization: `${ApiKey}`
+                    "X-Api-Key": `${ApiKey}`,
+                    "Access-Control-Allow-Origin": "*",
+                    
                 }
             }
             const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&page=${pages}&category=${category}
-            `, config).then( response => response ).catch( err => console.error(err));
+            `, config).then( response => response ).catch( err => console.error(err)).finally(() => {
+                setLoading(false)
+            } );
             setNews(data.articles);
-            setLoading(false)
         }
         requestNews();
     }, [pages])

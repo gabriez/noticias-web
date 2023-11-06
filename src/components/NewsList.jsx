@@ -17,11 +17,11 @@ const NewsList = () => {
         <Grid
         container
         
-        justifyContent={!loading ? 'auto' :  "center"}
-        alignItems={!loading ? 'auto' :  "center"}
+        justifyContent={!loading || news?.lenght === 0 ? 'auto' :  "center"}
+        alignItems={!loading || news?.lenght === 0 ? 'auto' :  "center"}
         spacing={2}
         >
-            { !loading ? news.map( info => (<New key={info.url} info={info}/>)) : <CircularProgress /> }
+            { !loading ? news?.lenght === 0 ? news.map( info => (<New key={info.url} info={info}/>)) : <p>No hay noticias que mostrar</p> : <CircularProgress /> }
         </Grid>
         <Stack
             sx={{
