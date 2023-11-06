@@ -31,8 +31,8 @@ export const NoticiasProvider = ({children}) => {
                 }
             }            
             setPages(1);
-            const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&category=${category}
-            `, config).then( response => response ).catch( err => console.error(err)).finally(() => {
+            const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&category=${category}`, config)
+            .then( response => response ).catch( err => console.error(err)).finally(() => {
                 setLoading(false)
             } );
             setTotalPages(Math.ceil((data.totalResults)/20));
@@ -53,8 +53,7 @@ export const NoticiasProvider = ({children}) => {
                     
                 }
             }
-            const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&page=${pages}&category=${category}
-            `, config).then( response => response ).catch( err => console.error(err)).finally(() => {
+            const { data } = await axios(`https://newsapi.org/v2/top-headlines?country=us&page=${pages}&category=${category}`, config).then( response => response ).catch( err => console.error(err)).finally(() => {
                 setLoading(false)
             } );
             setNews(data.articles);
